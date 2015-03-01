@@ -14,6 +14,8 @@ gem 'rspec-rails'
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'font-awesome-sass', '~> 4.3.0'
 
+gem 'rails_12factor', group: :production
+
 group :development, :test do
   gem 'byebug'
   gem 'pry'
