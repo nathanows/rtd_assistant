@@ -1,0 +1,8 @@
+@import "modules/all";
+
+$font-stack: 'delicious', Arial, sans-serif;
+
+body {
+  font: 100% $font-stack;
+  color: $dark-grey;
+}

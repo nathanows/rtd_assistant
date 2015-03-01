@@ -1,0 +1,125 @@
+#landing-jumbo {
+  background: url(/assets/rtd-big-land.jpeg) no-repeat center center fixed;
+}
+
+#signup-div {
+  color: $dark-grey;
+  background-color: $light-grey-opaque;
+  border-radius: 0;
+  border: none;
+  margin-bottom: 0;
+
+  h2 {
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: -2px;
+    word-spacing: -3px;
+    font-size: 40px;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  #term-blurb {
+    p {
+      font-size: 13px;
+    }
+  }
+
+  .oauth-login-btns {
+    margin-top: 10px;
+    div {
+      text-align: center;
+    }
+  }
+}
+
+.modal-content {
+  padding: 25px;
+}
+
+#info-header {
+  color: $dark-grey;
+  text-align: center;
+  border-bottom: 2px solid $rtd-red;
+  margin-bottom: 30px;
+
+  h1 {
+    margin-top: 0;
+    font-size: 60px;
+  }
+}
+
+#lbo1, #lbo2, #lbo3, #lbo4 {
+  .landing-box-inner {
+    padding: 20px;
+  }
+}
+
+#lbo1 {
+  border-right: 1px solid $medium-grey;
+  border-bottom: 1px solid $medium-grey;
+}
+
+#lbo2 {
+  border-bottom: 1px solid $medium-grey;
+}
+
+#lbo3 {
+  border-right: 1px solid $medium-grey;
+}
+
+.landing-box {
+  h2 {
+    margin-top: 0;
+  }
+
+  .landing-infographic-outer {
+    height: 300px;
+    width: 100%;
+    margin: 20px 0 15px 0;
+    display: table;
+    overflow: hidden;
+
+    .landing-infographic-inner {
+      display: table-cell;
+      background: $light-grey;
+      vertical-align: middle;
+      width: 100%;
+      margin: 0 auto;
+      text-align: center;
+
+      h4 {
+        display: block;
+        font-size: 60px;
+        color: $medium-grey;
+      }
+    }
+  }
+
+  .landing-btn {
+    text-align: center;
+  }
+
+  .landing-box-desc {
+    font-size: 16px;
+  }
+}
+
+.btn-landing {
+  font-weight: bold;
+  font-size: 15px;
+  background: $medium-grey;
+  border: 1px solid $medium-grey;
+  color: $dark-grey;
+  border-radius: 0;
+
+  &:hover {
+    border: 1px solid $medium-grey;
+    color: $rtd-red;
+    background: white;
+  }
+
+  .btn-landing-icon {
+    color: $rtd-red;
+  }
+}
