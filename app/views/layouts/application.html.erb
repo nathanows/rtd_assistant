@@ -9,10 +9,16 @@
   <%= favicon_link_tag 'favicon.ico' %>
 </head>
 <body>
-  <%= render 'shared/navbar' %>
-
-  <%= yield %>
-
-  <%= render 'shared/footer' %>
+  <div id="wrapper">
+    <div id="header">
+      <%= render 'shared/navbar' %>
+    </div>
+    <div id="content">
+      <%= yield %>
+    </div>
+    <div id="footer">
+      <%= render 'shared/footer' %>
+    </div>
+  </div>
 </body>
 </html>
