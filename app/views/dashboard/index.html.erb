@@ -1,0 +1,66 @@
+<div id="dash-request">
+  <div class="container">
+    <div id="dash-request-content" class="row">
+      <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
+        <%= render 'shared/notification_request_form' %>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="dash-summaries">
+  <div class="container">
+    <div class="col-lg-6">
+      <table id="dash-schedule" class="table table-bordered table-condensed">
+        <thead>
+          <td></td>
+          <td>Sun</td>
+          <td>Mon</td>
+          <td>Tue</td>
+          <td>Wed</td>
+          <td>Thur</td>
+          <td>Fri</td>
+          <td>Sat</td>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
+            <td><input type="text" class="form-control" /></td>
+            <td><input type="text" class="form-control" /></td>
+            <td><input type="text" class="form-control" /></td>
+            <td><input type="text" class="form-control" /></td>
+            <td><input type="text" class="form-control" /></td>
+            <td><input type="text" class="form-control" /></td>
+            <td><input type="text" class="form-control" /></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><input type="text" class="form-control" /></td>
+            <td><input type="text" class="form-control" /></td>
+            <td><input type="text" class="form-control" /></td>
+            <td><input type="text" class="form-control" /></td>
+            <td><input type="text" class="form-control" /></td>
+            <td><input type="text" class="form-control" /></td>
+            <td><input type="text" class="form-control" /></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<%= javascript_tag do %>
+  $(function() {
+    var availableTags = [
+      "Home",
+      "Work",
+      "School",
+      "KingSoopers",
+      "WholeFoods",
+      "Movie Theater",
+    ];
+
+    $(".location-input").autocomplete({
+      source: availableTags
+    });
+  });
+<% end %>
