@@ -15,3 +15,4 @@
 //= require bootstrap-sprockets
 //= require agree-checkbox
 //= require navbar-dropdown
+//= require bootstrap-switch

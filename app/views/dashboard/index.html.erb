@@ -9,46 +9,342 @@
 </div>
 <div id="dash-summaries">
   <div class="container">
-    <div class="col-lg-6">
-      <table id="dash-schedule" class="table table-bordered table-condensed">
-        <thead>
-          <td></td>
-          <td>Sun</td>
-          <td>Mon</td>
-          <td>Tue</td>
-          <td>Wed</td>
-          <td>Thur</td>
-          <td>Fri</td>
-          <td>Sat</td>
-        </thead>
-        <tbody>
-          <tr>
-            <td></td>
-            <td><input type="text" class="form-control" /></td>
-            <td><input type="text" class="form-control" /></td>
-            <td><input type="text" class="form-control" /></td>
-            <td><input type="text" class="form-control" /></td>
-            <td><input type="text" class="form-control" /></td>
-            <td><input type="text" class="form-control" /></td>
-            <td><input type="text" class="form-control" /></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td><input type="text" class="form-control" /></td>
-            <td><input type="text" class="form-control" /></td>
-            <td><input type="text" class="form-control" /></td>
-            <td><input type="text" class="form-control" /></td>
-            <td><input type="text" class="form-control" /></td>
-            <td><input type="text" class="form-control" /></td>
-            <td><input type="text" class="form-control" /></td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="col-lg-4">
+      <div id="dash-profile" class="well">
+        <h2>User Profile</h2>
+        <div class="row">
+          <div class=col-lg-5>
+            <%= image_tag "user.png" %>
+          </div>
+          <div class="col-lg-7">
+            <h3 id="dash-username">Johnny Appleseed</h3>
+            <p id="dash-registered"><em>Registered 01/24/2015</em></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div id="dash-prof-lower">
+              <h4 id="dash-notif-count">115 Notifications Requested</h4>
+              <button class="btn btn-success btn-sm" type="submit">Edit User Profile</button>
+            </div>
+            <div class="colorgraph dash-prof-divider"></div>
+            <div id="notification-opts">
+              <h2>Notification Options</h2>
+              <table class="table table-responsive">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Contact</th>
+                    <th>Active?</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>My Cell</td>
+                    <td>303-339-5953</td>
+                    <td class="notif-active-toggle">
+                      <input id="switch-state" type="checkbox" data-size="mini" checked>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Work Phone</td>
+                    <td>555-333-4444</td>
+                    <td class="notif-active-toggle">
+                      <input id="switch-state" type="checkbox" data-size="mini">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Personal Email</td>
+                    <td>johnny@example.com</td>
+                    <td class="notif-active-toggle">
+                      <input id="switch-state" type="checkbox" data-size="mini" checked>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div id="dash-new-notif-method">
+                <button type="submit" class="btn btn-success btn-sm">Add A New Notification Method</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <div id="dash-locs" class="well">
+        <div class="row">
+          <div class="col-lg-6">
+            <h2>Locations</h2>
+          </div>
+          <div id="dash-add-loc-btn" class="col-lg-6">
+            <button type="submit" class="btn btn-success">Add Location</button>
+          </div>
+        </div>
+        <div class="row">
+          <div id="dash-loc-table" class="col-lg-12">
+            <p><em>Drag and drop columns to update order in dropdowns.</em></p>
+            <table class="table table-responsive">
+              <thead>
+                <th>Name</th>
+                <th>Street Address</th>
+                <th>City</th>
+                <th>Zipcode</th>
+                <th>Active?</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Home</td>
+                  <td>5555 Main St.</td>
+                  <td>Denver</td>
+                  <td>80203</td>
+                  <td class="loc-active-toggle">
+                    <input id="switch-state" type="checkbox" data-size="mini" checked>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Home</td>
+                  <td>5555 Main St.</td>
+                  <td>Denver</td>
+                  <td>80203</td>
+                  <td class="loc-active-toggle">
+                    <input id="switch-state" type="checkbox" data-size="mini" checked>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Home</td>
+                  <td>5555 Main St.</td>
+                  <td>Denver</td>
+                  <td>80203</td>
+                  <td class="loc-active-toggle">
+                    <input id="switch-state" type="checkbox" data-size="mini">
+                  </td>
+                </tr>
+                <tr>
+                  <td>Home</td>
+                  <td>5555 Main St.</td>
+                  <td>Denver</td>
+                  <td>80203</td>
+                  <td class="loc-active-toggle">
+                    <input id="switch-state" type="checkbox" data-size="mini" checked>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Home</td>
+                  <td>5555 Main St.</td>
+                  <td>Denver</td>
+                  <td>80203</td>
+                  <td class="loc-active-toggle">
+                    <input id="switch-state" type="checkbox" data-size="mini" checked>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div id="dash-sched" class="well">
+        <div id="dash-sched-header" class="row">
+          <div class="col-lg-6">
+            <h2>Scheduled Notifications</h2>
+          </div>
+          <div class="col-lg-6" id="dash-add-sched-btn">
+            <button type="submit" class="btn btn-success">Add Scheduled Notification</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 dash-sched-box-outer">
+            <div class="dash-sched-box-inner">
+              <div class="dash-sched-box-header">
+                <h4>scheduled notification</h4>
+                <h3>Work Commute</h3>
+                <hr />
+              </div>
+              <div class="dash-sched-box-content">
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <td>Time</td>
+                      <td>7:30 AM</td>
+                    </tr>
+                    <tr>
+                      <td>Method</td>
+                      <td>
+                        <span class="label label-default">My Cell</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Days</td>
+                      <td>
+                        <span class="label label-default">Mon</span>
+                        <span class="label label-default">Tue</span>
+                        <span class="label label-default">Wed</span>
+                        <span class="label label-default">Thur</span>
+                        <span class="label label-default">Fri</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <hr />
+              <div class="dash-sched-box-btns">
+                <div class="row">
+                  <div class="col-lg-5 col-lg-offset-1">
+                    <button type="submit" class="btn btn-warning btn-md">Edit</button>
+                  </div>
+                  <div class="col-lg-5">
+                    <button type="submit" class="btn btn-danger btn-md">Delete</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- dash-sched-box-outer -->
+          <div class="col-lg-4 dash-sched-box-outer">
+            <div class="dash-sched-box-inner">
+              <div class="dash-sched-box-header">
+                <h4>scheduled notification</h4>
+                <h3>Work Commute</h3>
+                <hr />
+              </div>
+              <div class="dash-sched-box-content">
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <td>Time</td>
+                      <td>7:30 AM</td>
+                    </tr>
+                    <tr>
+                      <td>Method</td>
+                      <td>
+                        <span class="label label-default">My Cell</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Days</td>
+                      <td>
+                        <span class="label label-default">Mon</span>
+                        <span class="label label-default">Tue</span>
+                        <span class="label label-default">Wed</span>
+                        <span class="label label-default">Thur</span>
+                        <span class="label label-default">Fri</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <hr />
+              <div class="dash-sched-box-btns">
+                <div class="row">
+                  <div class="col-lg-5 col-lg-offset-1">
+                    <button type="submit" class="btn btn-warning btn-md">Edit</button>
+                  </div>
+                  <div class="col-lg-5">
+                    <button type="submit" class="btn btn-danger btn-md">Delete</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- dash-sched-box-outer -->
+          <div class="col-lg-4 dash-sched-box-outer">
+            <div class="dash-sched-box-inner">
+              <div class="dash-sched-box-header">
+                <h4>scheduled notification</h4>
+                <h3>Work Commute</h3>
+                <hr />
+              </div>
+              <div class="dash-sched-box-content">
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <td>Time</td>
+                      <td>7:30 AM</td>
+                    </tr>
+                    <tr>
+                      <td>Method</td>
+                      <td>
+                        <span class="label label-default">My Cell</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Days</td>
+                      <td>
+                        <span class="label label-default">Mon</span>
+                        <span class="label label-default">Tue</span>
+                        <span class="label label-default">Wed</span>
+                        <span class="label label-default">Thur</span>
+                        <span class="label label-default">Fri</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <hr />
+              <div class="dash-sched-box-btns">
+                <div class="row">
+                  <div class="col-lg-5 col-lg-offset-1">
+                    <button type="submit" class="btn btn-warning btn-md">Edit</button>
+                  </div>
+                  <div class="col-lg-5">
+                    <button type="submit" class="btn btn-danger btn-md">Delete</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- dash-sched-box-outer -->
+          <div class="col-lg-4 dash-sched-box-outer">
+            <div class="dash-sched-box-inner">
+              <div class="dash-sched-box-header">
+                <h4>scheduled notification</h4>
+                <h3>Work Commute</h3>
+                <hr />
+              </div>
+              <div class="dash-sched-box-content">
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <td>Time</td>
+                      <td>7:30 AM</td>
+                    </tr>
+                    <tr>
+                      <td>Method</td>
+                      <td>
+                        <span class="label label-default">My Cell</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Days</td>
+                      <td>
+                        <span class="label label-default">Mon</span>
+                        <span class="label label-default">Tue</span>
+                        <span class="label label-default">Wed</span>
+                        <span class="label label-default">Thur</span>
+                        <span class="label label-default">Fri</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <hr />
+              <div class="dash-sched-box-btns">
+                <div class="row">
+                  <div class="col-lg-5 col-lg-offset-1">
+                    <button type="submit" class="btn btn-warning btn-md">Edit</button>
+                  </div>
+                  <div class="col-lg-5">
+                    <button type="submit" class="btn btn-danger btn-md">Delete</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- dash-sched-box-outer -->
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
 <%= javascript_tag do %>
+  $(".dash-sched-toggle").bootstrapSwitch();
+
   $(function() {
     var availableTags = [
       "Home",
@@ -63,4 +359,12 @@
       source: availableTags
     });
   });
+<% end %>
+
+<%= javascript_tag do %>
+  $(".notif-active-toggle input").bootstrapSwitch();
+<% end %>
+
+<%= javascript_tag do %>
+  $(".loc-active-toggle input").bootstrapSwitch();
 <% end %>

@@ -22,30 +22,144 @@
       font-size: 18px;
     }
   }
+
+  .well {
+    background-color: transparent;
+    border-radius: 20px;
+    border: 1px solid $light-grey;
+    margin-bottom: 0;
+  }
 }
 
 #dash-summaries {
   background-color: $medium-grey;
+  padding-bottom: 40px;
 
-  #dash-schedule {
-    thead {
+  #dash-profile {
+    margin-top: 40px;
+
+    h2 {
+      margin-top: 0;
+    }
+
+    #dash-username {
+      margin-top: 0;
+    }
+
+    #dash-registered {
+      font-size: 14px;
+    }
+
+    .dash-prof-divider {
+      margin: 30px 0;
+    }
+
+    #notification-opts {
+      th {
+        font-size: 18px;
+      }
+
+      td {
+        font-size: 16px;
+      }
+    }
+
+    #dash-new-notif-method {
+      margin-top: 5px;
       text-align: center;
-      font-size: 16px;
     }
 
-    input {
-      display: block;
-      padding: 0;
-      margin: 0;
-      border: 0;
-      width: 100%;
-      border-radius: 0;
-      line-height: 1;
+    #dash-prof-lower {
+      margin-top: 20px;
+      text-align: center;
+
+      button {
+        margin-top: 10px;
+      }
+    }
+  }
+
+  #dash-locs {
+    margin-top: 40px;
+
+    h2 {
+      margin-top: 0;
     }
 
-    td {
-      margin: 0;
-      padding: 0;
+    #dash-add-loc-btn {
+      text-align: right;
+    }
+
+    #dash-loc-table {
+      em {
+        font-size: 14px;
+      }
+
+      th {
+        font-size: 18px;
+      }
+
+      td {
+        font-size: 16px;
+      }
+    }
+  }
+
+  #dash-sched {
+    h2 {
+      margin-top: 0;
+    }
+
+    #dash-sched-header {
+      margin-bottom: 20px;
+    }
+
+    #dash-add-sched-btn {
+      text-align: right;
+    }
+
+    .dash-sched-box-inner {
+      border: 1px solid $medium-grey;
+      padding: 10px;
+      margin-bottom: 20px;
+
+      hr {
+        background-color: $dark-grey;
+        border-color: $dark-grey;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+      .dash-sched-box-header {
+        text-align: center;
+        margin-bottom: 20px;
+
+        h4 {
+          margin: -5px 0 0 0;
+          text-transform: uppercase;
+          color: $rtd-red;
+          font-weight: bold;
+          font-size: 14px;
+        }
+
+        h3 {
+          margin: 5px 0 0 0;
+        }
+      }
+
+      table {
+        td {
+          font-size: 16px;
+        }
+      }
+
+      .dash-sched-box-btns {
+        text-align: center;
+
+        button {
+          margin-bottom: 10px;
+        }
+      }
     }
   }
 }
