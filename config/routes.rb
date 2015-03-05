@@ -7,5 +7,9 @@ Rails.application.routes.draw do
 
   get "/dashboard" => "dashboard#index"
 
+  post "/notifications/notify" => "notifications#notify"
+  post "/sms" => "receive_text#index"
+  get "/sms" => "receive_text#index"
+
   #get "*rest" => "static_pages#not_found"
 end

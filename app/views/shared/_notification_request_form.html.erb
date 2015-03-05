@@ -19,7 +19,7 @@
       <input type="text" class="form-control input-lg location-input" id="to" placeholder="To...">
     </div>
     <div class="form-group">
-      <button type="submit" class="btn btn-success btn-lg">Request Notification</button>
+      <%= link_to "Reqest Notification", notifications_notify_path, method: :post, class: "btn btn-success btn-lg"%>
     </div>
   </form>
 </div>

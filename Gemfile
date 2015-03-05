@@ -14,6 +14,7 @@ gem 'unicorn'
 gem 'rspec-rails'
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'font-awesome-sass', '~> 4.3.0'
+gem 'twilio-ruby'
 
 gem 'devise', '~> 3.4.0'
 gem 'domp'
