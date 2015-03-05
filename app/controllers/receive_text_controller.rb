@@ -3,10 +3,10 @@ class ReceiveTextController < ApplicationController
     # let's pretend that we've mapped this action to
     # http://localhost:3000/sms in the routes.rb file
 
-    twiml = "<Response>
-      <Sms>Thanks for your message!</Sms>
-    </Response>"
+    twiml = Twilio::TwiML::Response.new do |r|
+      r.Message "Hey Monkey. Thanks for the message!"
+    end
 
-    render plain: twiml
+    render twiml.text
   end
 end
