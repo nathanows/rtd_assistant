@@ -1,15 +1,28 @@
 <div id="landing-login" class="container nav-dropdown">
-  <form class="navbar-form navbar-right" role="search">
-    <div id="landing-login-drop-email" class="form-group">
-      <input type="text" class="form-control" name="email" placeholder="Email Address">
+  <div class="row">
+    <div id="oauth-login-btns">
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
+        <a href="/users/auth/facebook" class="zocial facebook sign-in-oauth">Sign in with Facebook</a>
+      </div>
+      <div class="col-xs-12 col-sm-4 col-md-4 col-lg-2">
+        <a href="/users/auth/linkedin" class="zocial linkedin sign-in-oauth">Sign in with LinkedIn</a>
+      </div>
+      <div class="col-xs-12 col-sm-4 col-md-4 col-lg-2">
+        <a href="/users/auth/google_oauth2" class="zocial googleplus sign-in-oauth">Sign in with Google</a>
+      </div>
     </div>
-    <div class="form-group">
-      <input type="text" class="form-control" name="password" placeholder="Password">
-    </div>
-    <button type="submit" class="btn btn-default btn-landing-nav">
-      <%= icon("sign-in", "", class: "navbar-link-icon" ) %> Sign In
-    </button>
-  </form>
+    <form id="landing-login-form" class="col-lg-6 navbar-form navbar-right" role="search">
+      <div id="landing-login-drop-email" class="form-group">
+        <input type="text" class="form-control" name="email" placeholder="Email Address">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" name="password" placeholder="Password">
+      </div>
+      <button type="submit" class="btn btn-default btn-landing-nav">
+        <%= icon("sign-in", "", class: "navbar-link-icon" ) %> Sign In
+      </button>
+    </form>
+  </div>
 </div>
 
 <div id="dash-dropdown" class="container nav-dropdown">

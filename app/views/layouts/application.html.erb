@@ -13,9 +13,19 @@
     <div id="header">
       <%= render 'shared/navbar' %>
     </div>
+
+    <div id="flash-msgs">
+      <div class="container">
+        <% flash.each do |name, msg| %>
+          <%= content_tag :div, msg, class: "alert alert-info" %>
+        <% end %>
+      </div>
+    </div>
+
     <div id="content">
       <%= yield %>
     </div>
+
     <div id="footer">
       <%= render 'shared/footer' %>
     </div>

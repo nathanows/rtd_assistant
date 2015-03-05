@@ -12,16 +12,25 @@
     </div>
     <div class="collapse navbar-collapse" id="navbarcollapse">
       <ul id="navbar-links" class="nav navbar-nav navbar-right login-drop-wrap">
-        <li id="dash-nav-btn" data-nav-name="dash-dropdown">
-          <%= link_to dashboard_path do %>
-            <p><%= icon("dashboard", "", class: "navbar-link-icon" ) %> Dashboard</p>
-          <% end %>
-        </li>
-        <li id="login-nav-btn" data-nav-name="landing-login">
-          <%= link_to "#" do %>
-            <p><%= icon("sign-in", "", class: "navbar-link-icon" ) %> Login</p>
-          <% end %>
-        </li>
+        <% if current_user %>
+          <li id="dash-nav-btn" data-nav-name="dash-dropdown">
+            <%= link_to dashboard_path do %>
+              <p><%= icon("dashboard", "", class: "navbar-link-icon" ) %> Dashboard</p>
+            <% end %>
+          </li>
+          <li id="login-nav-btn">
+            <%= link_to destroy_user_session_path, :method => :delete do %>
+              <p><%= icon("sign-out", "", class: "navbar-link-icon" ) %> Logout</p>
+            <% end %>
+          </li>
+
+        <% else %>
+          <li id="login-nav-btn" data-nav-name="landing-login">
+            <%= link_to "#" do %>
+              <p><%= icon("sign-in", "", class: "navbar-link-icon" ) %> Login</p>
+            <% end %>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>

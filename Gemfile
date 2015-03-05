@@ -15,6 +15,14 @@ gem 'rspec-rails'
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'font-awesome-sass', '~> 4.3.0'
 
+gem 'devise', '~> 3.4.0'
+gem 'domp'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-linkedin'
+gem "omniauth-google-oauth2"
+gem 'figaro'
+
 gem 'rails_12factor', group: :production
 
 group :development, :test do
@@ -23,4 +31,5 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
   gem 'spring'
 end
+
 

@@ -46,10 +46,20 @@
   }
 }
 
+
 .nav-dropdown {
   display: none;
 
-  #landing-login {
+  #oauth-login-btns {
+    a {
+      font-size: 11.5px;
+      margin-top: 23px;
+    }
+  }
+
+  #landing-login-form {
+    margin-right: 0;
+
     .form-control {
       border-radius: 0;
       margin: 10px 5px;

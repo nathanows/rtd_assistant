@@ -11,7 +11,8 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.ui.all
+//= require jquery_ujs
+//= require jquery.ui.autocomplete
 //= require bootstrap-sprockets
 //= require agree-checkbox
 //= require navbar-dropdown
