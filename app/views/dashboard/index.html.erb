@@ -41,31 +41,19 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>My Cell</td>
-                    <td>303-339-5953</td>
-                    <td class="notif-active-toggle">
-                      <input id="switch-state" type="checkbox" data-size="mini" checked>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Work Phone</td>
-                    <td>555-333-4444</td>
-                    <td class="notif-active-toggle">
-                      <input id="switch-state" type="checkbox" data-size="mini">
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Personal Email</td>
-                    <td>johnny@example.com</td>
-                    <td class="notif-active-toggle">
-                      <input id="switch-state" type="checkbox" data-size="mini" checked>
-                    </td>
-                  </tr>
+                  <% @user.phone_numbers(true).each do |num| %>
+                    <tr>
+                      <td><%= num.name %></td>
+                      <td><%= num.phone_number %></td>
+                      <td class="notif-active-toggle">
+                        <input id="switch-state" type="checkbox" data-size="mini" checked="<%= num.active %>">
+                      </td>
+                    </tr>
+                  <% end %>
                 </tbody>
               </table>
               <div id="dash-new-notif-method">
-                <button type="submit" class="btn btn-success btn-sm">Add A New Notification Method</button>
+                <a href="#" data-toggle="modal" data-target="#add-phone-number" class="btn btn-success btn-sm">Add A New Notification Method</a>
               </div>
             </div>
           </div>
@@ -344,6 +332,46 @@
   </div>
 </div>
 
+<div class="modal fade" id="add-phone-number" tabindex="-1" role="dialog" aria-labelledby="addPhoneNumber" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title" id="add-phone-number-title">Please add your phone number:</h4>
+      </div>
+      <div class="modal-body">
+        This is the number that you will recieve notifications at and from where you will send requests.
+        <%= form_for @phone_number, url: new_phone_number_path(@phone_number, @user), html: { class: "form-horizontal" } do |f| %>
+          <div class="form-group">
+            <%= f.hidden_field :user_id, value: @user.id %>
+            <%= f.label "Phone Number Name", class: "control-label col-sm-3"%>
+            <div class="col-sm-9">
+              <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+            </div>
+            <%= f.label "Phone Number", class: "control-label col-sm-3" %>
+            <div class="col-sm-9">
+              <div class="input-group">
+                <%= f.text_field :number, class: "form-control", id: "phone-number", placeholder: "(999) 999-9999" %>
+                <span class="input-group-btn">
+                  <%= f.submit "Add Phone Number", class: "btn btn-success" %>
+                </span>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% if @user.phone_numbers.count == 0 %>
+  <script type="text/javascript" charset="utf-8">
+    $(function() {
+       $("#add-phone-number").modal();
+    });
+  </script>
+<% end %>
+
 <%= javascript_tag do %>
   $(".dash-sched-toggle").bootstrapSwitch();
 
@@ -356,6 +384,10 @@
       "WholeFoods",
       "Movie Theater",
     ];
+
+    $(function($){
+      $("#phone-number").mask("(999) 999-9999");
+    });
 
     $(".location-input").autocomplete({
       source: availableTags

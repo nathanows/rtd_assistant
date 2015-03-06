@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   get "/dashboard" => "dashboard#index"
+  post "/new_phone_number" => "phone_numbers#create"
 
   post "/notifications/notify" => "notifications#notify"
   post "/sms" => "receive_text#index"

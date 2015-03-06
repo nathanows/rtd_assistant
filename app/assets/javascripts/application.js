@@ -17,3 +17,4 @@
 //= require agree-checkbox
 //= require navbar-dropdown
 //= require bootstrap-switch
+//= require jquery-maskedinput.js
