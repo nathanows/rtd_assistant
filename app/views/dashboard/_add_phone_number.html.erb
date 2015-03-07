@@ -1,0 +1,31 @@
+<div class="modal fade" id="add-phone-number" tabindex="-1" role="dialog" aria-labelledby="addPhoneNumber" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title" id="add-phone-number-title">Please add your phone number:</h4>
+      </div>
+      <div class="modal-body">
+        This is the number that you will recieve notifications at and from where you will send requests.
+        <%= form_for @phone_number, url: new_phone_number_path(@phone_number, @user), html: { class: "form-horizontal" } do |f| %>
+          <div class="form-group">
+            <%= f.hidden_field :user_id, value: @user.id %>
+            <%= f.label "Phone Number Name", class: "control-label col-sm-3"%>
+            <div class="col-sm-9">
+              <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+            </div>
+            <%= f.label "Phone Number", class: "control-label col-sm-3" %>
+            <div class="col-sm-9">
+              <div class="input-group">
+                <%= f.text_field :number, class: "form-control", id: "phone-number", placeholder: "(999) 999-9999" %>
+                <span class="input-group-btn">
+                  <%= f.submit "Add Phone Number", class: "btn btn-success" %>
+                </span>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

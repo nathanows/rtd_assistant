@@ -83,6 +83,7 @@ GEM
       thor (~> 0.14)
     font-awesome-sass (4.3.1)
       sass (~> 3.2)
+    geocoder (1.2.7)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
     hashie (3.4.0)
@@ -266,6 +267,7 @@ DEPENDENCIES
   domp
   figaro
   font-awesome-sass (~> 4.3.0)
+  geocoder
   jbuilder (~> 2.0)
   jquery-rails
   jquery-ui-sass-rails

@@ -1,0 +1,22 @@
+<h2>Notification Options</h2>
+<table class="table table-responsive">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Contact</th>
+      <th>Active?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @user.phone_numbers(true).each do |num| %>
+      <%= render 'notification_method', num: num %>
+    <% end %>
+  </tbody>
+</table>
+<div id="dash-new-notif-method">
+  <a href="#" data-toggle="modal" data-target="#add-phone-number"
+     class="btn btn-success btn-sm">
+    Add A New Notification Method
+  </a>
+  <%= render 'add_phone_number' %>
+</div>

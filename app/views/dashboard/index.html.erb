@@ -11,53 +11,7 @@
   <div class="container">
     <div class="col-lg-4">
       <div id="dash-profile" class="well">
-        <h2>User Profile</h2>
-        <div class="row">
-          <div class=col-lg-5>
-            <%= image_tag @user.image, id: "user-profile" %>
-          </div>
-          <div class="col-lg-7">
-            <h3 id="dash-username">
-              <%= "#{@user.first_name} #{@user.last_name}" %>
-            </h3>
-            <p id="dash-registered"><em>Registered 01/24/2015</em></p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-12">
-            <div id="dash-prof-lower">
-              <h4 id="dash-notif-count">115 Notifications Requested</h4>
-              <button class="btn btn-success btn-sm" type="submit">Edit User Profile</button>
-            </div>
-            <div class="colorgraph dash-prof-divider"></div>
-            <div id="notification-opts">
-              <h2>Notification Options</h2>
-              <table class="table table-responsive">
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Contact</th>
-                    <th>Active?</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% @user.phone_numbers(true).each do |num| %>
-                    <tr>
-                      <td><%= num.name %></td>
-                      <td><%= num.phone_number %></td>
-                      <td class="notif-active-toggle">
-                        <input id="switch-state" type="checkbox" data-size="mini" checked="<%= num.active %>">
-                      </td>
-                    </tr>
-                  <% end %>
-                </tbody>
-              </table>
-              <div id="dash-new-notif-method">
-                <a href="#" data-toggle="modal" data-target="#add-phone-number" class="btn btn-success btn-sm">Add A New Notification Method</a>
-              </div>
-            </div>
-          </div>
-        </div>
+        <%= render 'user_profile' %>
       </div>
     </div>
     <div class="col-lg-8">
@@ -67,7 +21,11 @@
             <h2>Locations</h2>
           </div>
           <div id="dash-add-loc-btn" class="col-lg-6">
-            <button type="submit" class="btn btn-success">Add Location</button>
+            <a href="#" data-toggle="modal" data-target="#add-location"
+               class="btn btn-success">
+               Add Location
+             </a>
+             <%= render 'add_location' %>
           </div>
         </div>
         <div class="row">
@@ -82,51 +40,18 @@
                 <th>Active?</th>
               </thead>
               <tbody>
-                <tr>
-                  <td>Home</td>
-                  <td>5555 Main St.</td>
-                  <td>Denver</td>
-                  <td>80203</td>
-                  <td class="loc-active-toggle">
-                    <input id="switch-state" type="checkbox" data-size="mini" checked>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Home</td>
-                  <td>5555 Main St.</td>
-                  <td>Denver</td>
-                  <td>80203</td>
-                  <td class="loc-active-toggle">
-                    <input id="switch-state" type="checkbox" data-size="mini" checked>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Home</td>
-                  <td>5555 Main St.</td>
-                  <td>Denver</td>
-                  <td>80203</td>
-                  <td class="loc-active-toggle">
-                    <input id="switch-state" type="checkbox" data-size="mini">
-                  </td>
-                </tr>
-                <tr>
-                  <td>Home</td>
-                  <td>5555 Main St.</td>
-                  <td>Denver</td>
-                  <td>80203</td>
-                  <td class="loc-active-toggle">
-                    <input id="switch-state" type="checkbox" data-size="mini" checked>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Home</td>
-                  <td>5555 Main St.</td>
-                  <td>Denver</td>
-                  <td>80203</td>
-                  <td class="loc-active-toggle">
-                    <input id="switch-state" type="checkbox" data-size="mini" checked>
-                  </td>
-                </tr>
+                <% @user.locations(true).each do |loc| %>
+                  <tr>
+                    <td><%= loc.name %></td>
+                    <td><%= loc.street %></td>
+                    <td><%= loc.city %></td>
+                    <td><%= loc.zipcode %></td>
+                    <td class="notif-active-toggle">
+                      <input id="switch-state" type="checkbox" data-size="mini"
+                      checked="<%= loc.active %>">
+                    </td>
+                  </tr>
+                <% end %>
               </tbody>
             </table>
           </div>
@@ -332,37 +257,6 @@
   </div>
 </div>
 
-<div class="modal fade" id="add-phone-number" tabindex="-1" role="dialog" aria-labelledby="addPhoneNumber" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h4 class="modal-title" id="add-phone-number-title">Please add your phone number:</h4>
-      </div>
-      <div class="modal-body">
-        This is the number that you will recieve notifications at and from where you will send requests.
-        <%= form_for @phone_number, url: new_phone_number_path(@phone_number, @user), html: { class: "form-horizontal" } do |f| %>
-          <div class="form-group">
-            <%= f.hidden_field :user_id, value: @user.id %>
-            <%= f.label "Phone Number Name", class: "control-label col-sm-3"%>
-            <div class="col-sm-9">
-              <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
-            </div>
-            <%= f.label "Phone Number", class: "control-label col-sm-3" %>
-            <div class="col-sm-9">
-              <div class="input-group">
-                <%= f.text_field :number, class: "form-control", id: "phone-number", placeholder: "(999) 999-9999" %>
-                <span class="input-group-btn">
-                  <%= f.submit "Add Phone Number", class: "btn btn-success" %>
-                </span>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
 
 <% if @user.phone_numbers.count == 0 %>
   <script type="text/javascript" charset="utf-8">

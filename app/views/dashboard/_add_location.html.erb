@@ -1,0 +1,43 @@
+<div class="modal fade" id="add-location" tabindex="-1" role="dialog" aria-labelledby="addLocation" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title" id="add-location-title">Add a location:</h4>
+      </div>
+      <div class="modal-body">
+        You can use these locations to request text notifications using shorthand. With these locations 
+        you can use the format <em>"work home now"</em> to request a notification ASAP with leave times 
+        for your route between work and home. Save yourself the typing!
+        <%= form_for @location, url: new_location_path(@location), html: { class: "form-horizontal" } do |f| %>
+          <div class="form-group">
+            <%= f.hidden_field :user_id, value: @user.id %>
+            <%= f.hidden_field :active, value: true %>
+            <%= f.hidden_field :saved_location, value: true %>
+            <%= f.label "Name", class: "control-label col-sm-3"%>
+            <div class="col-sm-9">
+              <%= f.text_field :name, class: "form-control", placeholder: "My Location Name" %>
+            </div>
+            <%= f.label "Street 1", class: "control-label col-sm-3"%>
+            <div class="col-sm-9">
+              <%= f.text_field :street, class: "form-control", placeholder: "1111 Main St." %>
+            </div>
+            <%= f.label "City", class: "control-label col-sm-3"%>
+            <div class="col-sm-9">
+              <%= f.text_field :city, class: "form-control", placeholder: "Denver" %>
+            </div>
+            <%= f.label "State", class: "control-label col-sm-3"%>
+            <div class="col-sm-9">
+              <%= f.text_field :state, class: "form-control", placeholder: "CO" %>
+            </div>
+            <%= f.label "Zipcode", class: "control-label col-sm-3"%>
+            <div class="col-sm-9">
+              <%= f.text_field :zipcode, class: "form-control", placeholder: "80203" %>
+            </div>
+            <%= f.submit "Add Location" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

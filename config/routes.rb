@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   get "/dashboard" => "dashboard#index"
   post "/new_phone_number" => "phone_numbers#create"
+  post "/new_location" => "locations#create"
 
   post "/notifications/notify" => "notifications#notify"
   post "/sms" => "receive_text#index"
