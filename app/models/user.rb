@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :authentications, class_name: 'UserAuthentication', dependent: :destroy
   has_many :phone_numbers
   has_many :locations
+  has_many :notifications
 
   devise :omniauthable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -16,5 +17,9 @@ class User < ActiveRecord::Base
     }
 
     create(attributes)
+  end
+
+  def phone_number
+    phone_numbers.active?.first
   end
 end

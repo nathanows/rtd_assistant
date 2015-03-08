@@ -7,7 +7,7 @@
       </div>
       <div class="modal-body">
         This is the number that you will recieve notifications at and from where you will send requests.
-        <%= form_for @phone_number, url: new_phone_number_path(@phone_number, @user), html: { class: "form-horizontal" } do |f| %>
+        <%= form_for @phone_number, url: new_phone_number_path(@phone_number), html: { class: "form-horizontal" } do |f| %>
           <div class="form-group">
             <%= f.hidden_field :user_id, value: @user.id %>
             <%= f.label "Phone Number Name", class: "control-label col-sm-3"%>

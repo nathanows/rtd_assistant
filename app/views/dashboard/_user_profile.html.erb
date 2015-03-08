@@ -13,7 +13,7 @@
 <div class="row">
   <div class="col-lg-12">
     <div id="dash-prof-lower">
-      <h4 id="dash-notif-count">115 Notifications Requested</h4>
+      <h4 id="dash-notif-count"><%= pluralize(@user.notifications.count, 'Notification') %> Requested</h4>
       <button class="btn btn-success btn-sm" type="submit">Edit User Profile</button>
     </div>
     <div class="colorgraph dash-prof-divider"></div>

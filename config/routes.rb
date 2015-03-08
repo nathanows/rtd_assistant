@@ -5,13 +5,11 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
-  get "/dashboard" => "dashboard#index"
+  get "/dashboard"         => "dashboard#index"
   post "/new_phone_number" => "phone_numbers#create"
-  post "/new_location" => "locations#create"
-
-  post "/notifications/notify" => "notifications#notify"
-  post "/sms" => "receive_text#index"
-  get "/sms" => "receive_text#index"
+  post "/new_location"     => "locations#create"
+  post "/new_notification" => "notifications#create"
+  get "/receive_text"      => "notifications#receive_text"
 
   #get "*rest" => "static_pages#not_found"
 end

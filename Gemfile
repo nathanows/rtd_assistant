@@ -17,6 +17,7 @@ gem 'font-awesome-sass', '~> 4.3.0'
 gem 'twilio-ruby'
 gem 'phony_rails'
 gem 'geocoder'
+gem 'rest_client'
 
 gem 'devise', '~> 3.4.0'
 gem 'domp'
