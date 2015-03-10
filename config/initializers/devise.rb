@@ -229,6 +229,8 @@ Devise.setup do |config|
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
 
+  config.stretches = Rails.env.test? ? 1 : 10
+
   # ==> OmniAuth
   config.omniauth :facebook, ENV['facebook_app_id'], ENV['facebook_app_secret']
   config.omniauth :google_oauth2, ENV['google_client_id'], ENV['google_client_secret'], { }

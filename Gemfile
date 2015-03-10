@@ -11,14 +11,12 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 gem 'unicorn'
-gem 'rspec-rails'
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'font-awesome-sass', '~> 4.3.0'
 gem 'twilio-ruby'
 gem 'phony_rails'
 gem 'geocoder'
-gem 'rest_client'
-
+gem 'rest-client'
 gem 'devise', '~> 3.4.0'
 gem 'domp'
 gem 'omniauth'
@@ -34,6 +32,16 @@ group :development, :test do
   gem 'pry'
   gem 'web-console', '~> 2.0'
   gem 'spring'
+  gem 'factory_girl_rails'
+  gem 'faker'
+  gem 'awesome_print'
+  gem 'rspec-rails'
+  gem 'rspec'
+  gem 'capybara'
 end
 
-
+group :test do
+  gem 'shoulda-matchers'
+  gem 'launchy'
+  gem 'database_cleaner'
+end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150308080245) do
+ActiveRecord::Schema.define(version: 20150308214942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,14 @@ ActiveRecord::Schema.define(version: 20150308080245) do
   end
 
   add_index "authentication_providers", ["name"], name: "index_name_on_authentication_providers", using: :btree
+
+  create_table "direction_sets", force: :cascade do |t|
+    t.integer  "notification_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "direction_sets", ["notification_id"], name: "index_direction_sets_on_notification_id", using: :btree
 
   create_table "locations", force: :cascade do |t|
     t.string  "name"
@@ -62,6 +70,23 @@ ActiveRecord::Schema.define(version: 20150308080245) do
 
   add_index "phone_numbers", ["user_id"], name: "index_phone_numbers_on_user_id", using: :btree
 
+  create_table "routes", force: :cascade do |t|
+    t.integer "direction_set_id"
+    t.string  "walk_to_dep_time"
+    t.string  "walk_to_dep_desc"
+    t.string  "walk_from_arr_time"
+    t.string  "transit_num"
+    t.string  "transit_type"
+    t.string  "transit_dep_time"
+    t.string  "transit_dep_stop"
+    t.string  "transit_arr_time"
+    t.string  "transit_arr_stop"
+    t.string  "departure_time"
+    t.string  "arrival_time"
+  end
+
+  add_index "routes", ["direction_set_id"], name: "index_routes_on_direction_set_id", using: :btree
+
   create_table "user_authentications", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "authentication_provider_id"
@@ -97,7 +122,9 @@ ActiveRecord::Schema.define(version: 20150308080245) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "direction_sets", "notifications"
   add_foreign_key "locations", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "phone_numbers", "users"
+  add_foreign_key "routes", "direction_sets"
 end

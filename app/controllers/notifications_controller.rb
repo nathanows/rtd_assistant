@@ -1,4 +1,5 @@
 class NotificationsController < ApplicationController
+  include NotificationsHelper
 
   def create
     @notification = Notification.create(notification_params)
@@ -6,10 +7,17 @@ class NotificationsController < ApplicationController
   end
 
   def receive_text
-    @user_name = User.joins(:phone_numbers)
-      .where(phone_numbers: { number: '+15037087739' }).first.first_name
-
-    render xml: "<Response><Message>Cool, we're on it #{@user_name}!</Message></Response>"
+    message_body = params["Body"]
+    user_number = params["From"]
+    user = User.joins(:phone_numbers)
+      .where(phone_numbers: { number: user_number }).first
+    validity = valid_message?(message_body, user)
+    if validity[0]
+      create_notification(message_body, user)
+      head :ok, content_type: "text/html"
+    else
+      render xml: validity[1]
+    end
   end
 
   private
