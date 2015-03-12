@@ -22,8 +22,9 @@ gem 'domp'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-linkedin'
-gem "omniauth-google-oauth2"
+gem 'omniauth-google-oauth2'
 gem 'figaro'
+gem 'aasm'
 
 gem 'rails_12factor', group: :production
 

@@ -1,4 +1,33 @@
 class Notification < ActiveRecord::Base
+
+  state_machine :state, initial: :pending do
+
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   include RoutesHelper
 
   belongs_to :user
