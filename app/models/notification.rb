@@ -1,31 +1,79 @@
 class Notification < ActiveRecord::Base
+  include AASM
 
-  state_machine :state, initial: :pending do
+  aasm do
+    state :request_received, :initial => true
+    state :to_send_from_request
+    state :waiting_for_from
+    state :invalid_from_location
+    state :to_send_to_request
+    state :waiting_for_to
+    state :invalid_to_location
+    state :to_send_route_notification
+    state :waiting_for_additional_option_requests
+    state :to_send_additional_option_request
+    state :completed
 
+    event :receive_request do
+      transitions from: :request_received, to: :to_send_from_request
+    end
+
+    event :send_notification do
+      transitions from: :request_received, to: :to_send_route_notification
+    end
+
+    event :send_from_request do
+      transitions from: :to_send_from_request, to: :waiting_for_from
+    end
+
+    event :receive_from do
+      transitions from: :waiting_for_from, to: :invalid_from_location,
+        if: :invalid_from?
+      transitions from: :invalid_from_location, to: :invalid_from_location,
+        if: :invalid_from?
+      transitions from: :waiting_for_from, to: :to_send_to_request
+      transitions from: :invalid_from_location, to: :to_send_to_request
+    end
+
+    event :send_to_request do
+      transitions from: :to_send_to_request, to: :waiting_for_to
+    end
+
+    event :receive_to do
+      transitions from: :waiting_for_to, to: :invalid_to_request,
+        if: :invalid_to?
+      transitions from: :invalid_to_location, to: :invalid_to_location,
+        if: :invalid_to?
+      transitions from: :waiting_for_to, to: :to_send_route_notification
+      transitions from: :invalid_to_location, to: :to_send_route_notification
+    end
+
+    event :send_route_notification do
+      transitions from: :to_send_route_notification, to: :waiting_for_additional_option_requests
+    end
+
+    event :receive_additional_option_request do
+      transitions from: :waiting_for_additional_option_requests,
+        to: :to_send_additional_option_request
+    end
+
+    event :send_additional_option_request do
+      transitions from: :to_send_additional_option_request, to: :waiting_for_additional_option_requests
+    end
+
+    event :close_notification do
+      transitions from: :waiting_for_additional_option_requests, to: :completed
+    end
+
+
+    # GUARDS
+
+    def invalid_from?
+    end
+
+    def invalid_to?
+    end
   end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   include RoutesHelper
