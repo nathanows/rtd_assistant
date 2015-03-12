@@ -1,10 +1,12 @@
 class PhoneNumber < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
 
-  validates :number, uniqueness: true
-
   belongs_to :user
   phony_normalize :number, :default_country_code => 'US'
+
+  validates :number, :name, presence: true
+  validates_uniqueness_of :number, case_sensative: false
+
   before_save :phone_number_activation
 
   scope :active, -> { where(active: true) }

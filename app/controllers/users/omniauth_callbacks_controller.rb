@@ -44,8 +44,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       if user.valid?
         create_authentication_and_sign_in(auth_params, user, provider)
       else
-        flash[:error] = user.errors.full_messages.first
-        redirect_to new_user_registration_url
+        flash[:error] = "Login error. Please try again."
+        redirect_to root_url
       end
     end
 end

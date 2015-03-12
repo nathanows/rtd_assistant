@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   has_many :locations
   has_many :notifications
 
+  validates :email, :first_name, :last_name, presence: true
+
   devise :omniauthable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -17,9 +19,5 @@ class User < ActiveRecord::Base
     }
 
     create(attributes)
-  end
-
-  def phone_number
-    phone_numbers.active?.first
   end
 end
