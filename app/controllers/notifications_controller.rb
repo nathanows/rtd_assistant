@@ -7,22 +7,24 @@ class NotificationsController < ApplicationController
   end
 
   def receive_text
-    message_body = params["Body"]
-    user_number = params["From"]
-    user = User.joins(:phone_numbers)
-      .where(phone_numbers: { number: user_number }).first
-    validity = valid_message?(message_body, user)
-    if validity[0]
-      create_notification(message_body, user)
-      head :ok, content_type: "text/html"
-    else
-      render xml: validity[1]
-    end
+    Notification.create().receive_request
+
+    #message_body = params["Body"]
+    #user_number = params["From"]
+    #user = User.joins(:phone_numbers)
+      #.where(phone_numbers: { number: user_number }).first
+    #validity = valid_message?(message_body, user)
+    #if validity[0]
+      #create_notification(message_body, user)
+      #head :ok, content_type: "text/html"
+    #else
+      #render xml: validity[1]
+    #end
   end
 
   private
 
   def notification_params
-    params.require(:notification).permit(:user_id, :from, :to, :sent_time)
+    params.require(:notification).permit(:user_id, :from, :to)
   end
 end

@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20150312202543) do
     t.boolean  "sent"
     t.string   "source"
     t.boolean  "pending"
-    t.string   "state"
+    t.string   "aasm_state"
   end
 
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree

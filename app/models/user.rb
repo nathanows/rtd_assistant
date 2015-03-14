@@ -20,4 +20,8 @@ class User < ActiveRecord::Base
 
     create(attributes)
   end
+
+  def phone_number
+    phone_numbers.active.first.number
+  end
 end

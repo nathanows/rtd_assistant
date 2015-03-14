@@ -1,5 +1,5 @@
 class AddStateToNotifications < ActiveRecord::Migration
   def change
-    add_column :notifications, :state, :string
+    add_column :notifications, :aasm_state, :string
   end
 end

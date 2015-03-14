@@ -10,8 +10,10 @@ module RoutesHelper
   end
 
   def create_routes(response, direction_set)
-    response["routes"].each do |route|
-      create_route(route, direction_set)
+    response["routes"].each_with_index do |route, i|
+      if !route["legs"][0]["steps"][1].nil?
+        create_route(route, direction_set)
+      end
     end
   end
 

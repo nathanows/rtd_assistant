@@ -11,7 +11,7 @@ describe NotificationsHelper do
              city: "Denver", state: "CO", user_id: @user.id)
     end
 
-    it "can create a new notification from a text string" do
+    xit "can create a new notification from a text string" do
       create_notification("home school", @user)
       expect(@user.notifications.count).to eq(1)
     end

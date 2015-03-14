@@ -1,0 +1,19 @@
+RTD ASSIST: <%= from.name.capitalize %> to <%= to.name.capitalize %>
+
+1: <%= routes[0].transit_type %> #<%= routes[0].transit_num %> Departs: <%= routes[0].transit_dep_time %>
+  - <%= routes[0].walk_to_dep_time %> <%= routes[0].walk_to_dep_desc %>
+  - 0 Transfers
+  - Arrives to <%= routes[0].transit_arr_stop %> at <%= routes[0].transit_arr_time %>
+  - <%= routes[0].walk_from_arr_time %> walk to <%= to.name.capitalize %> (<%= routes[0].arrival_time %> Arrival)
+
+OTHER OPTS (reply with 'option #' for more info)
+
+<% if routes[1] %>
+2: <%= routes[1].transit_type %> #<%= routes[1].transit_num %> departs from <%= routes[1].transit_dep_stop %> at <%= routes[1].transit_dep_time %>
+<% end %>
+<% if routes[2] %>
+3: <%= routes[2].transit_type %> #<%= routes[2].transit_num %> departs from <%= routes[2].transit_dep_stop %> at <%= routes[2].transit_dep_time %>
+<% end %>
+<% if routes[3] %>
+4: <%= routes[3].transit_type %> #<%= routes[3].transit_num %> departs from <%= routes[3].transit_dep_stop %> at <%= routes[3].transit_dep_time %>
+<% end %>
