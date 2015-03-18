@@ -15,8 +15,13 @@ class GoogleMapsService
     create_direction_set_routes(directions, notification)
   end
 
-  def pull_directions
-    RestClient.get maps_api,
+  private
+
+    def pull_directions
+      RestClient.get maps_api, maps_params
+    end
+
+    def maps_params
       { params:
         {
           origin: from.lat_lng,
@@ -26,5 +31,5 @@ class GoogleMapsService
           key: ENV['google_api_key']
         }
       }
-  end
+    end
 end

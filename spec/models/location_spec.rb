@@ -5,13 +5,10 @@ RSpec.describe Location, type: :model do
   context 'validations' do
     subject { build(:location) }
 
-    it { should validate_presence_of(:name) }
     it { should validate_presence_of(:street) }
     it { should validate_presence_of(:city) }
     it { should validate_presence_of(:state) }
-    it { should validate_presence_of(:active) }
     it { should validate_presence_of(:user_id) }
-    it { should validate_presence_of(:saved_location) }
     it { should belong_to(:user) }
   end
 

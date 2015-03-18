@@ -21,7 +21,21 @@ class User < ActiveRecord::Base
     create(attributes)
   end
 
+  def active_saved_location_names
+    locations.where(active: true).where(saved_location: true).map(&:name)
+  end
+
   def phone_number
     phone_numbers.active.first.number
+  end
+
+  def open_notification
+    notifications.where.not(aasm_state: "completed").first
+  end
+
+  def close_open_requests
+    notifications.where.not(aasm_state: "completed").map do |notification|
+      notification.close_notification!
+    end
   end
 end

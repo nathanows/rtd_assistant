@@ -1,5 +1,4 @@
 class NotificationsController < ApplicationController
-  include NotificationsHelper
 
   def create
     @notification = Notification.create(notification_params)
@@ -7,19 +6,13 @@ class NotificationsController < ApplicationController
   end
 
   def receive_text
-    Notification.create().receive_request
-
-    #message_body = params["Body"]
-    #user_number = params["From"]
-    #user = User.joins(:phone_numbers)
-      #.where(phone_numbers: { number: user_number }).first
-    #validity = valid_message?(message_body, user)
-    #if validity[0]
-      #create_notification(message_body, user)
-      #head :ok, content_type: "text/html"
-    #else
-      #render xml: validity[1]
-    #end
+    if SMSValidator.new(params["Body"], params["From"]).user?
+      NotificationRouter.new(params["Body"], params["From"]).call
+      head :ok
+    else
+      TwilioMailer.new(to_phone: params["From"]).send_invalid_user_notification
+      head :ok
+    end
   end
 
   private

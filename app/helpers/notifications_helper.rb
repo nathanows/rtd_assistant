@@ -51,10 +51,6 @@ module NotificationsHelper
   # MESSAGES
 
   def invalid_number_message
-    "<Response><Message>" +
-    "Hmm... We're not finding this number in our system. Make sure that " +
-    "this number is associated with your account at www.rtdassist.com." +
-    "</Message></Response>"
   end
 
   def invalid_format_message
