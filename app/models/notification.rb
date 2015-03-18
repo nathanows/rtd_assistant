@@ -32,8 +32,6 @@ class Notification < ActiveRecord::Base
     event :close_notification do
       transitions from: :waiting_for_additional_option_requests, to: :completed
     end
-
-
   end
 
   private

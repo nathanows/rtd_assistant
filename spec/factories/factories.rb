@@ -24,6 +24,6 @@ FactoryGirl.define do
     zipcode "10003"
     active true
     saved_location true
-    association :user, email: "email@example.com"
+    association :user
   end
 end
