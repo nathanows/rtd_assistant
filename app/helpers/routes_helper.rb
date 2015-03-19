@@ -20,7 +20,7 @@ module RoutesHelper
     if route["departure_time"].nil?
       new_route = Route.create(
         direction_set: direction_set,
-        option_number: option_num,
+        option: option_num,
         start_address: route["start_address"],
         end_address: route["end_address"],
         distance: route["distance"]["text"],
@@ -29,7 +29,7 @@ module RoutesHelper
     else
       new_route = Route.create(
         direction_set: direction_set,
-        option_number: option_num,
+        option: option_num,
         start_address: route["start_address"],
         end_address: route["end_address"],
         departure_time: route["departure_time"]["text"],

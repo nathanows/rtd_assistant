@@ -15,7 +15,7 @@ OPTION 1: <%= routes[0].steps.where(travel_mode: "TRANSIT").first.trans_type %> 
 
 <% routes.each_with_index do |route, i| %>
   <% if (i > 0) && route.steps.where(travel_mode: "TRANSIT").count > 0 %>
-OPTION <%= route.option_number %>: <%= route.steps.where(travel_mode: "TRANSIT").first.trans_type %> #<%= route.steps.where(travel_mode: "TRANSIT").first.trans_short_name %> at <%= route.steps.where(travel_mode: "TRANSIT").first.arrival_time.strftime("%-H:%M%p") %> (<%= route.arrival_time.strftime("%-H:%M") %> Arrival)
+OPTION <%= route.option %>: <%= route.steps.where(travel_mode: "TRANSIT").first.trans_type %> #<%= route.steps.where(travel_mode: "TRANSIT").first.trans_short_name %> at <%= route.steps.where(travel_mode: "TRANSIT").first.arrival_time.strftime("%-H:%M%p") %> (<%= route.arrival_time.strftime("%-H:%M") %> Arrival)
   <% end %>
 <% end %>
 
