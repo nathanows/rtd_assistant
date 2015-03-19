@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 20150319052021) do
 
   create_table "routes", force: :cascade do |t|
     t.integer "direction_set_id"
-    t.integer "option_number"
+    t.integer "option"
     t.string  "start_address"
     t.string  "end_address"
     t.time    "departure_time"

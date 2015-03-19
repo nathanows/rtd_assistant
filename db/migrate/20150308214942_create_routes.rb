@@ -2,7 +2,7 @@ class CreateRoutes < ActiveRecord::Migration
   def change
     create_table :routes do |t|
       t.references :direction_set, index: true
-      t.integer :option_number
+      t.integer :option
       t.string :start_address
       t.string :end_address
       t.time :departure_time
