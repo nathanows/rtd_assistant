@@ -1,19 +1,22 @@
-RTD ASSIST:
+RTD ASSIST: From <%= routes[0].start_address.split(",").first %>
 
-1: <%= routes[0].transit_type %> #<%= routes[0].transit_num %> Departs: <%= routes[0].transit_dep_time %>
-  - <%= routes[0].walk_to_dep_time %> <%= routes[0].walk_to_dep_desc %>
-  - 0 Transfers
-  - Arrives to <%= routes[0].transit_arr_stop %> at <%= routes[0].transit_arr_time %>
-  - <%= routes[0].walk_from_arr_time %> walk (<%= routes[0].arrival_time %> Arrival)
+<% if routes[0].steps.where(travel_mode: "TRANSIT").count == 0 %>
+OPTION 1: You're walking it... it's looking like about a <%= routes[0].duration %> walk
+<% else %>
+OPTION 1: <%= routes[0].steps.where(travel_mode: "TRANSIT").first.trans_type %> <%= routes[0].steps.where(travel_mode: "TRANSIT").first.trans_short_name %> at <%= routes[0].steps.where(travel_mode: "TRANSIT").first.arrival_time.strftime("%-H:%M%p") %> (<%= routes[0].arrival_time.strftime("%-H:%M") %> Arrival)
+  <% routes[0].steps.order("id ASC").each do |step| %>
+    <% if step.travel_mode == "WALKING" %>
+ - <%= step.duration %> <%= step.instructions.split(",").first %>
+    <% else %>
+ - <%= step.duration %> on <%= step.trans_type %> <%= step.trans_short_name %> towards <%= step.headsign %> to <%= step.departure_stop %>
+    <% end %>
+  <% end %>
+<% end %>
 
-OTHER OPTS (reply with 'option #' for more info)
+<% routes.each_with_index do |route, i| %>
+  <% if i > 0 %>
+OPTION <%= route.option_number %>: <%= route.steps.where(travel_mode: "TRANSIT").first.trans_type %> #<%= route.steps.where(travel_mode: "TRANSIT").first.trans_short_name %> at <%= route.steps.where(travel_mode: "TRANSIT").first.arrival_time.strftime("%-H:%M%p") %> (<%= route.arrival_time.strftime("%-H:%M") %> Arrival)
+  <% end %>
+<% end %>
 
-<% if routes[1] %>
-2: <%= routes[1].transit_type %> #<%= routes[1].transit_num %> departs from <%= routes[1].transit_dep_stop %> at <%= routes[1].transit_dep_time %>
-<% end %>
-<% if routes[2] %>
-3: <%= routes[2].transit_type %> #<%= routes[2].transit_num %> departs from <%= routes[2].transit_dep_stop %> at <%= routes[2].transit_dep_time %>
-<% end %>
-<% if routes[3] %>
-4: <%= routes[3].transit_type %> #<%= routes[3].transit_num %> departs from <%= routes[3].transit_dep_stop %> at <%= routes[3].transit_dep_time %>
-<% end %>
+(for more info on a specific option, reply with 'option #' or just '#')

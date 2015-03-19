@@ -10,31 +10,69 @@ module RoutesHelper
   end
 
   def create_routes(response, direction_set)
+    binding.pry
     response["routes"].each_with_index do |route, i|
-      if !route["legs"][0]["steps"][1].nil?
-        create_route(route, direction_set)
-      end
+      create_route(route, direction_set, (i+1))
     end
   end
 
-  def create_route(route, direction_set)
+  def create_route(route, direction_set, option_num)
     route = route["legs"][0]
-    first_step = route["steps"][0]
-    last_step = route["steps"][-1]
-    trans_detail = route["steps"][1]["transit_details"]
-    Route.create(
-      direction_set_id: direction_set.id,
-      walk_to_dep_time: first_step["duration"]["text"],
-      walk_to_dep_desc: first_step["html_instructions"],
-      walk_from_arr_time: last_step["duration"]["text"],
-      transit_num: trans_detail["line"]["short_name"],
-      transit_type: trans_detail["line"]["vehicle"]["type"],
-      transit_dep_time: trans_detail["departure_time"]["text"],
-      transit_dep_stop: trans_detail["departure_stop"]["name"],
-      transit_arr_time: trans_detail["arrival_time"]["text"],
-      transit_arr_stop: trans_detail["arrival_stop"]["name"],
-      departure_time: route["departure_time"]["text"],
-      arrival_time: route["arrival_time"]["text"]
-    )
+    binding.pry
+    if route["departure_time"].nil?
+      new_route = Route.create(
+        direction_set: direction_set,
+        option_number: option_num,
+        start_address: route["start_address"],
+        end_address: route["end_address"],
+        distance: route["distance"]["text"],
+        duration: route["duration"]["text"]
+      )
+    else
+      new_route = Route.create(
+        direction_set: direction_set,
+        option_number: option_num,
+        start_address: route["start_address"],
+        end_address: route["end_address"],
+        departure_time: route["departure_time"]["text"],
+        arrival_time: route["arrival_time"]["text"],
+        distance: route["distance"]["text"],
+        duration: route["duration"]["text"]
+      )
+    end
+
+    steps = route["steps"]
+    steps.each do |step|
+      if step["travel_mode"] == "TRANSIT"
+        transit_details = step["transit_details"]
+        line = transit_details["line"]
+        Step.create(
+          route: new_route,
+          distance: step["distance"]["text"],
+          duration: step["duration"]["text"],
+          instructions: step["html_instructions"],
+          travel_mode: step["travel_mode"],
+          arrival_stop: transit_details["arrival_stop"]["name"],
+          arrival_time: transit_details["arrival_time"]["text"],
+          departure_stop: transit_details["departure_stop"]["name"],
+          departure_time: transit_details["departure_time"]["name"],
+          headsign: transit_details["headsign"],
+          trans_name: line["name"],
+          trans_short_name: line["short_name"],
+          trans_type: line["vehicle"]["name"],
+          trans_stops: transit_details["num_stops"]
+        )
+      elsif step["travel_mode"] == "WALKING"
+        Step.create(
+          route: new_route,
+          distance: step["distance"]["text"],
+          duration: step["duration"]["text"],
+          instructions: step["html_instructions"],
+          travel_mode: step["travel_mode"]
+        )
+      else
+        puts "OMG NO!!!!"
+      end
+    end
   end
 end

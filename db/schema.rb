@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150312202543) do
+ActiveRecord::Schema.define(version: 20150319052021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,7 +55,6 @@ ActiveRecord::Schema.define(version: 20150312202543) do
     t.datetime "sent_time"
     t.boolean  "sent"
     t.string   "source"
-    t.boolean  "pending"
     t.string   "aasm_state"
   end
 
@@ -74,20 +73,37 @@ ActiveRecord::Schema.define(version: 20150312202543) do
 
   create_table "routes", force: :cascade do |t|
     t.integer "direction_set_id"
-    t.string  "walk_to_dep_time"
-    t.string  "walk_to_dep_desc"
-    t.string  "walk_from_arr_time"
-    t.string  "transit_num"
-    t.string  "transit_type"
-    t.string  "transit_dep_time"
-    t.string  "transit_dep_stop"
-    t.string  "transit_arr_time"
-    t.string  "transit_arr_stop"
-    t.string  "departure_time"
-    t.string  "arrival_time"
+    t.integer "option_number"
+    t.string  "start_address"
+    t.string  "end_address"
+    t.time    "departure_time"
+    t.time    "arrival_time"
+    t.string  "distance"
+    t.string  "duration"
   end
 
   add_index "routes", ["direction_set_id"], name: "index_routes_on_direction_set_id", using: :btree
+
+  create_table "steps", force: :cascade do |t|
+    t.integer  "route_id"
+    t.string   "distance"
+    t.string   "duration"
+    t.text     "instructions"
+    t.string   "travel_mode"
+    t.string   "arrival_stop"
+    t.time     "arrival_time"
+    t.string   "departure_stop"
+    t.time     "departure_time"
+    t.string   "headsign"
+    t.string   "trans_name"
+    t.string   "trans_short_name"
+    t.string   "trans_type"
+    t.integer  "trans_stops"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "steps", ["route_id"], name: "index_steps_on_route_id", using: :btree
 
   create_table "user_authentications", force: :cascade do |t|
     t.integer  "user_id"
@@ -129,4 +145,5 @@ ActiveRecord::Schema.define(version: 20150312202543) do
   add_foreign_key "notifications", "users"
   add_foreign_key "phone_numbers", "users"
   add_foreign_key "routes", "direction_sets"
+  add_foreign_key "steps", "routes"
 end

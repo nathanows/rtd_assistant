@@ -57,8 +57,6 @@ class TwilioMailer
         :template => 'mailers/sms/route_notification',
         :locals   => {
           routes: notification.routes,
-          from:   Location.find(notification.from),
-          to:     Location.find(notification.to)
         }
       )
     end
