@@ -65,7 +65,7 @@ class TwilioMailer
       ApplicationController.new.render_to_string(
         :template => 'mailers/sms/option_notification',
         :locals   => {
-          route:  notification.routes[option-1]
+          route:  notification.routes.find_by(option: option)
         }
       )
     end

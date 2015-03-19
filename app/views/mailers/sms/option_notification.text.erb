@@ -1,7 +1,14 @@
-RTD ASSIST: Additional Option
+RTD ASSIST: From <%= route.start_address.split(",").first %>
 
-<%= route.transit_type %> #<%= route.transit_num %> Departs: <%= route.transit_dep_time %>
-  - <%= route.walk_to_dep_time %> <%= route.walk_to_dep_desc %>
-  - 0 Transfers
-  - Arrives to <%= route.transit_arr_stop %> at <%= route.transit_arr_time %>
-  - <%= route.walk_from_arr_time %> walk (<%= route.arrival_time %> Arrival)
+<% if route.steps.where(travel_mode: "TRANSIT").count == 0 %>
+OPTION <%= route.option %>: You're walking it... it's looking like about a <%= route.duration %> walk
+<% else %>
+OPTION <%= route.option %>: <%= route.steps.where(travel_mode: "TRANSIT").first.trans_type %> <%= route.steps.where(travel_mode: "TRANSIT").first.trans_short_name %> at <%= route.steps.where(travel_mode: "TRANSIT").first.arrival_time.strftime("%-H:%M%p") %> (<%= route.arrival_time.strftime("%-H:%M") %> Arrival)
+  <% route.steps.order("id ASC").each do |step| %>
+    <% if step.travel_mode == "WALKING" %>
+ - <%= step.duration %> <%= step.instructions.split(",").first %>
+    <% else %>
+ - <%= step.duration %> on <%= step.trans_type %> <%= step.trans_short_name %> towards <%= step.headsign %> to <%= step.departure_stop %>
+    <% end %>
+  <% end %>
+<% end %>
