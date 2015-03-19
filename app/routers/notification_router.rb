@@ -35,7 +35,7 @@ class NotificationRouter
     user.close_open_requests
     from, to = saved_location_lookup
     Notification.create(user_id: user.id, from: from.id, to: to.id,
-                        send_time: Time.now, pending: false)
+                        send_time: Time.now)
   end
 
   def process_new_request
