@@ -30,7 +30,7 @@ class Notification < ActiveRecord::Base
     end
 
     event :close_notification do
-      transitions from: :waiting_for_additional_option_requests, to: :completed
+      transitions to: :completed
     end
   end
 
