@@ -5,7 +5,7 @@ class NotificationRouter
     @body = message_body
     @user = User.joins(:phone_numbers).
       where(phone_numbers: { number: from }).first
-    @open_notification = @user.open_notification
+    @open_notification = @user.open_notification if @user
     @state = @open_notification.aasm_state if @open_notification
     @validator = SMSValidator.new(message_body, from, @user, @open_notification)
   end
@@ -18,6 +18,14 @@ class NotificationRouter
     when waiting_for_location?       then process_location
     when waiting_for_option?         then process_option
     else                                  process_invalid_request
+    end
+  end
+
+  def location_id_lookup
+    if presaved_location
+      presaved_location.id
+    else
+      create_address.id
     end
   end
 
@@ -85,14 +93,6 @@ class NotificationRouter
 
   def waiting_for_to?
     state == "waiting_for_to"
-  end
-
-  def location_id_lookup
-    if presaved_location
-      presaved_location.id
-    else
-      create_address.id
-    end
   end
 
   def presaved_location

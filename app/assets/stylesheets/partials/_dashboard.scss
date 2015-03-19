@@ -8,6 +8,13 @@
 
   .form-group {
     margin: 5px;
+    input {
+      width: 250px;
+    }
+  }
+
+  .btn {
+    margin-left: 5px;
   }
 
   h2 {
@@ -39,8 +46,8 @@
     margin-top: 40px;
 
     #user-profile {
-      height: 125px;
-      width: 125px;
+      height: 60px;
+      width: 60px;
     }
 
     h2 {
@@ -49,6 +56,8 @@
 
     #dash-username {
       margin-top: 0;
+      margin-bottom: 5px;
+      font-size: 30px;
     }
 
     #dash-registered {

@@ -40,7 +40,7 @@
                 <th>Active?</th>
               </thead>
               <tbody>
-                <% @user.locations(true).each do |loc| %>
+                <% @user.locations(true).where(saved_location: true).each do |loc| %>
                   <tr>
                     <td><%= loc.name %></td>
                     <td><%= loc.street %></td>
@@ -275,23 +275,8 @@
 <%= javascript_tag do %>
   $(".dash-sched-toggle").bootstrapSwitch();
 
-  $(function() {
-    var availableTags = [
-      "Home",
-      "Work",
-      "School",
-      "KingSoopers",
-      "WholeFoods",
-      "Movie Theater",
-    ];
-
-    $(function($){
-      $("#phone-number").mask("(999) 999-9999");
-    });
-
-    $(".location-input").autocomplete({
-      source: availableTags
-    });
+  $(function($){
+    $("#phone-number").mask("(999) 999-9999");
   });
 <% end %>
 

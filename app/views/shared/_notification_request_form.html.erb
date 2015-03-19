@@ -1,26 +1,15 @@
 <div class="well">
   <h2>Request an RTD Notification</h2>
-  <%= form_for @notification, url: new_notification_path(@notification), html: { class: "form-inline" } do |f| %>
-    <%= f.hidden_field :user_id, value: @user.id %>
-    <%= f.hidden_field :send_time, value: Time.now %>
-    <%= f.hidden_field :source, value: "Online" %>
+  <%= form_tag new_notification_path(@notification), class: "form-inline" do %>
+    <%= hidden_field_tag "user_id", @user.id %>
+    <%= hidden_field_tag "send_time", Time.now %>
+    <%= hidden_field_tag "source", "Online" %>
     <div class="form-group">
-      <select class="form-control input-lg">
-        <option selected disabled>Leaving when?</option>
-        <option>Now</option>
-        <option>5 Minutes</option>
-        <option>10 Minutes</option>
-        <option>15 Minutes</option>
-        <option>20 Minutes</option>
-        <option>30 Minutes</option>
-      </select>
+      <%= text_field_tag "from", nil, placeholder: "From...", class: "input input-lg" %>
     </div>
     <div class="form-group">
-      <%= f.collection_select :from, @user.locations(true), :id, :name, { prompt: "From..." }, { class: "form-control input-lg location-input" } %>
+      <%= text_field_tag "to", nil, placeholder: "To...", class: "input input-lg" %>
     </div>
-    <div class="form-group">
-      <%= f.collection_select :to, @user.locations(true), :id, :name, { prompt: "To..." }, { class: "form-control input-lg location-input" } %>
-    </div>
-    <%= f.submit "Request Notification", class: "btn btn-success btn-lg" %>
+    <%= submit_tag "Request Notification", class: "btn btn-success btn-lg" %>
   <% end %>
 </div>

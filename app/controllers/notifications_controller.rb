@@ -1,7 +1,14 @@
 class NotificationsController < ApplicationController
 
   def create
-    @notification = Notification.create(notification_params)
+    user_phone = User.find_by(id: params[:user_id]).phone_number
+    from = NotificationRouter.new(params[:from], user_phone).location_id_lookup
+    to   = NotificationRouter.new(params[:to], user_phone).location_id_lookup
+    @notification = Notification.create(
+      user_id: params[:user_id],
+      from: from,
+      to: to
+    )
     redirect_to dashboard_path
   end
 
