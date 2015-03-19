@@ -10,7 +10,6 @@ module RoutesHelper
   end
 
   def create_routes(response, direction_set)
-    binding.pry
     response["routes"].each_with_index do |route, i|
       create_route(route, direction_set, (i+1))
     end
@@ -18,7 +17,6 @@ module RoutesHelper
 
   def create_route(route, direction_set, option_num)
     route = route["legs"][0]
-    binding.pry
     if route["departure_time"].nil?
       new_route = Route.create(
         direction_set: direction_set,
